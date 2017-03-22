@@ -8,7 +8,7 @@ var path = require('path');
 const execSync = require('child_process').execSync;
 
 module.exports = {
-  name: 'ember-cli-deploy-generic-build',
+  name: 'ember-cli-deploy-gernic-',
 
   createDeployPlugin: function(options) {
     var DeployPlugin = DeployPluginBase.extend({
@@ -22,7 +22,7 @@ module.exports = {
         var self       = this;
         var outputPath = this.readConfig('outputPath');
 
-        console.log(options, buildEnv)
+        console.log(options)
         const buildCommand = this.readConfig('buildCommand');
         console.log(buildCommand);
 
