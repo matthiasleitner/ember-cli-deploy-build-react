@@ -8,7 +8,7 @@ var path = require('path');
 const execSync = require('child_process').execSync;
 
 module.exports = {
-  name: 'ember-cli-deploy-build-react',
+  name: 'ember-cli-deploy-generic-build',
 
   createDeployPlugin: function(options) {
     var DeployPlugin = DeployPluginBase.extend({
