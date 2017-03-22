@@ -1,7 +1,7 @@
 {
-  "name": "ember-cli-deploy-build",
+  "name": "ember-cli-deploy-generic-build",
   "version": "0.1.1",
-  "description": "A Build Plugin for ember-cli-deploy",
+  "description": "Run generic build commands",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -15,7 +15,6 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "Aaron Chambers and the ember-cli-deploy team",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",

@@ -5,9 +5,10 @@ var Promise = require('ember-cli/lib/ext/promise');
 var glob  = require('glob');
 var DeployPluginBase = require('ember-cli-deploy-plugin');
 var path = require('path');
+const execSync = require('child_process').execSync;
 
 module.exports = {
-  name: 'ember-cli-deploy-build',
+  name: 'ember-cli-deploy-build-react',
 
   createDeployPlugin: function(options) {
     var DeployPlugin = DeployPluginBase.extend({
@@ -20,23 +21,13 @@ module.exports = {
       build: function(context) {
         var self       = this;
         var outputPath = this.readConfig('outputPath');
-        var buildEnv   = this.readConfig('environment');
 
-        var Builder  = this.project.require('ember-cli/lib/models/builder');
-        var builder = new Builder({
-          ui: this.ui,
-          outputPath: outputPath,
-          environment: buildEnv,
-          project: this.project
-        });
+        console.log(options, buildEnv)
+        const buildCommand = this.readConfig('buildCommand');
+        console.log(buildCommand);
 
-        this.log('building app to `' + outputPath + '` using buildEnv `' + buildEnv + '`...', { verbose: true });
-        return builder.build()
-          .finally(function() {
-            return builder.cleanup();
-          })
-          .then(this._logSuccess.bind(this, outputPath))
-          .then(function(files) {
+        execSync(buildCommand);
+        return this._logSuccess(outputPath).then(function(files) {
             files = files || [];
 
             return {
@@ -48,6 +39,7 @@ module.exports = {
             self.log('build failed', { color: 'red' });
             return Promise.reject(error);
           });
+
       },
       _logSuccess: function(outputPath) {
         var self = this;
